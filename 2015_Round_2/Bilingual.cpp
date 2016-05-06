@@ -5,6 +5,7 @@
 #include <iostream>
 #include <map>
 #include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 int N, NP, NC, M;
@@ -21,7 +22,7 @@ struct Edge
     int u, v, cap;
     Edge() {}
     Edge(int u, int v, int cap): u(u), v(v), cap(cap) {}
-} es[150 * 150];
+} es[200 * 200];
 int R, S, T;
 vector<int> tab[109]; // 边集
 int dis[109];
@@ -93,15 +94,18 @@ int DINIC()
 }
 int main()
 {
+//    freopen("a.txt", "r", stdin);
+//    freopen("b.out", "w", stdout);
     int TT;
-    cin>>TT;
+    scanf("%d", &TT);
+    int qq = 1;
     while (TT--) {
         memset(tab, 0, sizeof((tab)));
         R = 0;
         S = 1;
         T = 2;
         int n;
-        cin >> n;
+        scanf("%d", &n);
         ID.clear();
         string s, t;
         getline(cin, s);
@@ -109,14 +113,16 @@ int main()
             getline(cin, s);
             istringstream ssin(s);
             while (ssin >> t) {
-                int x = getID(t);
+                int x = getID(t)+1;
                 addedge(i, n+x*2-1, INF);
                 addedge(n+x*2, i, INF);
             }
         }
-        for(int i=0; i<ID.size(); i++)
-            addedge(n + i + i + 1, n + i * 2 + 2, 1);
-        cout<<DINIC()<<endl;
+        for(int i=1; i<=ID.size(); i++)
+            addedge(n + 2 * i - 1, n + i * 2, 1);
+        printf("Case #%d: ", qq++);
+        printf("%d\n", DINIC());
+        
     }
     
     return 0;
