@@ -22,11 +22,11 @@ struct Edge
     int u, v, cap;
     Edge() {}
     Edge(int u, int v, int cap): u(u), v(v), cap(cap) {}
-} es[200 * 200];
+} es[2000 * 2000];
 int R, S, T;
-vector<int> tab[109]; // 边集
-int dis[109];
-int current[109];
+vector<int> tab[20000]; // 边集
+int dis[20000];
+int current[20000];
 void addedge(int u, int v, int cap)
 {
     tab[u].push_back(R);
@@ -87,15 +87,15 @@ int DINIC()
     {
         int flow;
         memset(current, 0, sizeof(current)); // BFS后应当清空当前弧数组
-        while (flow = dinic(S, 0x3f3f3f3f)) // 一次BFS可以进行多次增广
+        while ((flow = dinic(S, 0x3f3f3f3f))) // 一次BFS可以进行多次增广
             ans += flow;
     }
     return ans;
 }
 int main()
 {
-//    freopen("a.txt", "r", stdin);
-//    freopen("b.out", "w", stdout);
+    freopen("C-small-practice.in", "r", stdin);
+    freopen("b", "w", stdout);
     int TT;
     scanf("%d", &TT);
     int qq = 1;
