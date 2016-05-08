@@ -1,10 +1,11 @@
-inp = open('C-large-practice.in')
-out = open('B-large-practice.out', "w")
+inp = open('a.in')
+out = open('a.out', "w")
 
 debug_model = True
 
 T = int(raw_input()) if debug_model else int(inp.readline())
 
+for i in xrange(T):
 
 
 
@@ -19,7 +20,8 @@ T = int(raw_input()) if debug_model else int(inp.readline())
 
 
 
-if debug_model:
-    print
-else:
-    out.write()
+
+    if debug_model:
+        print "Case #" + str(i+1) + ": " + ""
+    else:
+        out.write()
